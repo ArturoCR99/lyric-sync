@@ -1,4 +1,10 @@
-Version 0.5
+Version 0.5.1
 
 Update
 - Code Optimized
+
+Details
+- RunLyric 
+  :Interval was improved in order to fix the jump and undefined rows
+
+- Minor improvements
