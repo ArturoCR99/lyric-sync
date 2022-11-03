@@ -2,12 +2,12 @@
 let txtArea = document.getElementById("txtArea");
 let btnSave = document.getElementById("btnSave");
 let divLyric = document.querySelector(".div-lrc");
+
 let audio = document.querySelector(".audio");
 
 //Get or create the localstorage key
 let rowStorage = JSON.parse(localStorage.getItem("rowStorage")) || [];
 let wordStorage = JSON.parse(localStorage.getItem("wordStorage")) || [];
-
 
 //Create the text array for textarea value
 let text = [];
@@ -43,10 +43,15 @@ const formatData = () => {
         })
     });
 
-    localStorage.setItem("rowStorage", JSON.stringify(rowStorage));
-    localStorage.setItem("wordStorage", JSON.stringify(wordStorage));
+    if(localStorage.getItem("rowStorage")){
+        alert("Local Storage exists");
+    } else {
+        localStorage.setItem("rowStorage", JSON.stringify(rowStorage));
+        localStorage.setItem("wordStorage", JSON.stringify(wordStorage));
+        window.location.reload();
+        renderData();
+    }
 
-    renderData();
 }
 
 const renderData = () =>{
@@ -99,6 +104,8 @@ const renderData = () =>{
 
         btnTime.innerHTML = e.trackedTime;
     })
+
+
 }
 
 const trackTime = () => {
@@ -114,11 +121,14 @@ const trackTime = () => {
             e2.target.style.backgroundColor = e.color;
             btnTime.innerHTML = e.trackedTime;
             localStorage.setItem("rowStorage", JSON.stringify(rowStorage));
+            saveTrack();
+
         })
     })
+
 }
 
-const trackNow = () => {
+const saveTrack = () => {
     let arrayA = [];
     let arrayB = [];
     let arrayC = [];
@@ -143,9 +153,9 @@ const trackNow = () => {
         e.ends = arrayC[i];
         localStorage.setItem("rowStorage", JSON.stringify(rowStorage));
 
-        console.log("Starts " + arrayB[i] + "-" + "Ends " + arrayC[i]);
+        //console.log("Starts " + arrayB[i] + "-" + "Ends " + arrayC[i]);
     })
-
+    
 }
 
 const runLyric = () => {
@@ -154,10 +164,11 @@ const runLyric = () => {
     audio.addEventListener("play", () => {
 
         inter = setInterval(() => {
-            rowMap4.forEach((e) => {
+            rowMap4.find((e) => {
                 if(Math.floor(audio.currentTime) >= e.starts && Math.floor(audio.currentTime) < e.ends){
                     document.querySelector(`.divRow${e.idRow}`).style.backgroundColor = "greenyellow";
-                    document.querySelector(`.divRow${e.idRow}`).style.fontSize = "16pt";
+                    document.querySelector(`.divRow${e.idRow}`).style.fontSize = "18pt";
+                    console.log("")
                 } else {
                     document.querySelector(`.divRow${e.idRow}`).style.backgroundColor = "transparent";
                     document.querySelector(`.divRow${e.idRow}`).style.fontSize = "initial";
@@ -176,15 +187,31 @@ const runLyric = () => {
     })
 }
 
+/*const goTo = () => {
+    audio.oncanplay = function() {
+        rowStorage.forEach((e)=>{
+            let divRow = document.querySelector(`.divRow${e.idRow}`);
+            divRow.addEventListener("click", () => {
+                console.log("row "+ e.idRow);
+                this.currentTime = e.trackedTime;
+            })
+            })
+        };
+}
+*/
+
 const clearData = () => {
     localStorage.clear();
     window.location.reload();
+    alert("Cleaned");
+
 }
 
 window.addEventListener("load", () => { 
     renderData();
     trackTime();
     runLyric();
+    //goTo();
 })
 
 
