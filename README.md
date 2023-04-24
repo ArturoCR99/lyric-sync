@@ -26,3 +26,11 @@
 <p align="left">HTML5, CSS3, JavaScript, VSCode</p>
 
 ###
+
+<h3 align="left">Comentarios</h3>
+
+###
+
+<p align="left">⚠️ Al no tener un backend como tal, por ahora solo funciona una vez por canción.<br><br>❗Es preferible hacer click en "Clear local storage" para capturar una letra diferente</p>
+
+###
