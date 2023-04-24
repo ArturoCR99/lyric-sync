@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <header>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd">
+      <!-- Navbar content -->
+      <div class="container-md">
+        <a class="navbar-brand" href="#">LRC Generator </a>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <div class="container-fluid vh-100">
+      <!-- Main -->
+      <div class="container">
+        <!-- Menu -->
+        <div id="div-menu" class="container pt-3 pb-3">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdropLyric"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-card-text"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
+              />
+              <path
+                d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"
+              />
+            </svg>
+            Insert lyrics
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdropVideo"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-youtube"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
+              />
+            </svg>
+            Insert video
+          </button>
+          <button
+            id="btnClearLocalStorage"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-trash2-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"
+              />
+            </svg>
+            Clear LocalStorage
+          </button>
+        </div>
+        <!-- Content -->
+        <div class="container">
+          <div class="container">
+            <div id="div-content-row" class="row">
+              <div class="col">
+                <h5>Lyrics</h5>
+                <div class="container p-0 mt-4">
+                  <div
+                    id="lyrics-container"
+                    class="container text-start p-0"
+                  ></div>
+                </div>
+              </div>
+              <div class="col">
+                <h5>Video</h5>
+                <div class="container p-0 mt-4 sticky-top">
+                  <div id="video-container" class="container p-0 mb-4">
+                    <div id="video-player"></div>
+                  </div>
+                </div>
+                <div class="container">
+                  <!--
+                  <button
+                    id="btnGetIntervals"
+                    class="btn btn-outline-secondary"
+                    >
+                    GetIntervals
+                  </button>
+                  -->
+                </div>
+              </div>
+            </div>
+            <div class="row"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal (Video) -->
+    <div
+      class="modal fade"
+      id="staticBackdropVideo"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div
+        id="div-modal-video-dialog"
+        class="modal-dialog modal-dialog-centered"
+      >
+        <div id="div-modal-video" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Insert Video</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label for="basic-url" class="form-label">Your vanity URL</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-youtube"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="basic-url"
+                aria-describedby="basic-addon3"
+              />
+            </div>
+          </div>
+          <div id="div-modals-footer" class="modal-footer">
+            <div id="div-modals-footer" class="container p-0 text-center">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button id="btnDoneVideo" type="button" class="btn btn-primary">
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal (Lyric) -->
+    <div
+      class="modal fade"
+      id="staticBackdropLyric"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div
+        id="div-modal-lyrics-dialog"
+        class="modal-dialog modal-dialog-centered"
+      >
+        <div id="div-modal-lyrics" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Insert Lyrics</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="textarea-body" class="mb-3 h-100">
+              <label for="textarea-lyrics" class="form-label"
+                >Your lyrics</label
+              >
+              <textarea
+                id="textarea-lyrics"
+                class="form-control"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div id="div-modals-footer" class="container p-0 text-center">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button id="btnDoneLyrics" type="button" class="btn btn-primary">
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Bootstrap JS -->
+  <script
+    type="text/javascript"
+    src="https://www.youtube.com/player_api"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="script.js"></script>
+</html>
+<style>
+  #div-menu button {
+    margin: 3px;
+  }
+
+  #div-modal-lyrics {
+    height: 80vh;
+  }
+
+  #textarea-lyrics {
+    height: 90%;
+    scroll-behavior: auto;
+    resize: none;
+  }
+
+  #video-player {
+    width: 100%;
+    height: 200px;
+  }
+
+  .div-rows {
+    display: flex;
+    margin: 10px 0px 10px 0px;
+  }
+
+  .div-row {
+    box-sizing: border-box;
+    align-items: center;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 576px) {
+    #div-menu {
+      display: flex;
+      flex-direction: row;
+    }
+    #div-menu button {
+      width: 100%;
+      margin: 5px;
+    }
+
+    #div-modal-lyrics-dialog,
+    #div-modal-video-dialog {
+      margin: 0px;
+    }
+    #div-modal-lyrics,
+    #div-modal-video {
+      height: 100vh;
+      border-radius: 0px;
+    }
+
+    #div-content-row {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    #div-modals-footer {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #div-modals-footer button {
+      width: 100%;
+      margin: 5px;
+    }
+  }
+</style>
