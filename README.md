@@ -1,4 +1,4 @@
-<h1 align="left">Generador de letras para canciones</h1>
+<h1 align="left">Lyric Sync</h1>
 
 ###
 
