@@ -6,7 +6,7 @@
 
 ###
 
-<p align="left">Sitio web que tiene la función de capturar la letra existente de alguna canción y sincronizar cada verso a la par del audio.<br><br>https://arturohost.github.io/lyric-sync/</p>
+<p align="left">Sitio web que tiene la función de capturar la letra existente de alguna canción y sincronizar cada verso a la par del audio.<br><br>https://ArturoCR99.github.io/lyric-sync/</p>
 
 ###
 
